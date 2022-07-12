@@ -1,0 +1,8 @@
+{
+    "n_episodes": 64,
+    "success_rate": 0.0,
+    "mean_momentary_success": 0.0003125,
+    "transient_success_rate": 0.015625,
+    "return": 139.8358586256136,
+    "max_reward": 0.2599296091770147
+}
