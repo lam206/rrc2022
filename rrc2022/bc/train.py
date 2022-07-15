@@ -52,8 +52,9 @@ if __name__ == '__main__':
     model.to(device)
     loss_fn = MSELoss()
     optim = config.OPTIMISER(model.parameters(), lr=config.LR)
-
     tracker = ExperimentTracker()
+
+    print("Config is loaded")
     
     for e in range(config.EPOCHS):
         print("Epoch ", e)
