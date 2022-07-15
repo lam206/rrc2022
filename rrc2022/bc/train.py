@@ -10,7 +10,7 @@ import shutil
 
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-print('device: ', device)
+print('device:', device, flush=True)
 
 
 class ExperimentTracker():
@@ -54,10 +54,10 @@ if __name__ == '__main__':
     optim = config.OPTIMISER(model.parameters(), lr=config.LR)
     tracker = ExperimentTracker()
 
-    print("Config is loaded")
+    print("Config is loaded", flush=True)
     
     for e in range(config.EPOCHS):
-        print("Epoch ", e)
+        print("Epoch ", e, flush=True)
         tracker.log_evaluation(model, loss_fn, e)
         
         for obs, a in iter(train_dataloader):
