@@ -11,6 +11,7 @@ class BCPolicy(PolicyBase):
     def __init__(self, action_space, observation_space, episode_length):
         # load torch script
         self.model = BC()
+        self.model.cuda()
         torch_model_path = policies.get_model_path("overtrain.pt")
         print("Using ", torch_model_path)
         self.model.load_state_dict(torch.load(torch_model_path))    
@@ -24,7 +25,8 @@ class BCPolicy(PolicyBase):
 
     def get_action(self, observation):
         observation = torch.tensor(observation, dtype=torch.float)
-        action = self.model(observation.unsqueeze(0))
+        action = self.model(observation.unsqueeze(0).cuda()).cpu()
+        print(action[0].detach())
         action = np.clip(action[0].detach(), -0.397, 0.397)
         return action.numpy()
 

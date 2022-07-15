@@ -1,3 +1,3 @@
-LR = 0.001
+LR = 0.0001
 EPOCHS = 10
 BATCHSZ = 64
