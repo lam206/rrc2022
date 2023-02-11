@@ -12,11 +12,17 @@ class PushDataset(Dataset):
            visualization=True
         )
         tot_dataset = self.env.get_dataset()
-        split = int(0.8*len(tot_dataset))
+        split = int(0.8*len(tot_dataset['observations']))
         if train:
-            self.dataset = {key: tot_dataset[key][:split] for key in tot_dataset}
+            self.dataset = {
+                "observations": tot_dataset["observations"][:split],
+                "actions": tot_dataset["actions"][:split]
+            }
         else:
-            self.dataset = {key: tot_dataset[key][split:] for key in tot_dataset}
+            self.dataset = {
+                "observations": tot_dataset["observations"][split:],
+                "actions": tot_dataset["actions"][:split]
+            }
 
 
     def __len__(self):
